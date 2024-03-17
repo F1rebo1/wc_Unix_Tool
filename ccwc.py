@@ -41,18 +41,38 @@ def getBytes(fileName):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-c', dest="fileName", type=str)
-    parser.add_argument('-l', dest="fileName", type=str)
-    parser.add_argument('-w', dest="fileName", type=str)
-    parser.add_argument('-m', dest="fileName", type=str)
+    parser.add_argument('file_name', nargs='?', type=str, help='The name of the file to process')
+    parser.add_argument('-c', dest="c", type=str)
+    parser.add_argument('-l', dest="l", type=str)
+    parser.add_argument('-w', dest="w", type=str)
+    parser.add_argument('-m', dest="m", type=str)
 
     args = parser.parse_args()
-    fileName = args.fileName
+    c = args.c
+    l = args.l
+    w = args.w
+    m = args.m
 
-    print(str(getBytes(fileName)) + " " + str(fileName))
-    print(str(getLines(fileName)) + " " + str(fileName))
-    print(str(getWords(fileName)) + " " + str(fileName))
-    print(str(getChars(fileName)) + " " + str(fileName))
+    if args.file_name:
+        fileName = args.file_name
+        wcCnt,chCnt,lnCnt = getWords(fileName),getChars(fileName),getLines(fileName)
+        print(f'{lnCnt} {wcCnt} {chCnt} {fileName}')
+    elif c:
+        fileName = c
+        chCnt = getChars(fileName)
+        print(f'{chCnt} {fileName}')
+    elif l:
+        fileName = l
+        lnCnt = getLines(fileName)
+        print(f'{lnCnt} {fileName}')
+    elif w:
+        fileName = w
+        wcCnt = getWords(fileName)
+        print(f'{wcCnt} {fileName}')
+    elif m:
+        fileName = m
+        bytCnt = getBytes(fileName)
+        print(f'{bytCnt} {fileName}')
 
 if __name__ == "__main__":
     main()
