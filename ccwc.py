@@ -6,7 +6,7 @@ def getChars(fileName):
     charCount = 0
     with open(fileName,"rb") as file:
         for line in file:
-            charCount += len(line.decode())
+            charCount += len(line)
     file.close()
 
     return charCount
@@ -36,7 +36,7 @@ def getBytes(fileName):
     byteCount = 0
     with open(fileName,"rb") as file:   #Need to open with rb to read as binary
         for line in file:
-            byteCount += len(line)
+            byteCount += len(line.decode())
     file.close()
 
     return byteCount
