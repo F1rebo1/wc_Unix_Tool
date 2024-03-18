@@ -1,3 +1,4 @@
+import sys
 import argparse
 
 def getChars(fileName):
@@ -42,10 +43,10 @@ def getBytes(fileName):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('file_name', nargs='?', type=str, help='The name of the file to process')
-    parser.add_argument('-c', dest="c", type=str)
-    parser.add_argument('-l', dest="l", type=str)
-    parser.add_argument('-w', dest="w", type=str)
-    parser.add_argument('-m', dest="m", type=str)
+    parser.add_argument('-c', dest="c", action='store_true')
+    parser.add_argument('-l', dest="l", action='store_true')
+    parser.add_argument('-w', dest="w", action='store_true')
+    parser.add_argument('-m', dest="m", action='store_true')
 
     args = parser.parse_args()
     c = args.c
@@ -53,7 +54,25 @@ def main():
     w = args.w
     m = args.m
 
-    if args.file_name:
+    if not args.file_name:
+        if sys.stdin:
+            with open("newFile.txt","w") as file:
+                for line in sys.stdin:
+                    file.write(line)
+            fileName = "newFile.txt"
+            if args.c:
+                chCnt = getChars(fileName)
+                print(f'{chCnt} {fileName}')
+            elif args.l:
+                lnCnt = getLines(fileName)
+                print(f'{lnCnt} {fileName}')
+            elif args.w:
+                wcCnt = getWords(fileName)
+                print(f'{wcCnt} {fileName}')
+            elif args.m:
+                bytCnt = getBytes(fileName)
+                print(f'{bytCnt} {fileName}')
+    elif args.file_name:
         fileName = args.file_name
         wcCnt,chCnt,lnCnt = getWords(fileName),getChars(fileName),getLines(fileName)
         print(f'{lnCnt} {wcCnt} {chCnt} {fileName}')
