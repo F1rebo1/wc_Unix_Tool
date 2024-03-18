@@ -1,3 +1,4 @@
+import os
 import sys
 import argparse
 
@@ -62,16 +63,18 @@ def main():
             fileName = "newFile.txt"
             if args.c:
                 chCnt = getChars(fileName)
-                print(f'{chCnt} {fileName}')
+                print(f'{chCnt}')
             elif args.l:
                 lnCnt = getLines(fileName)
-                print(f'{lnCnt} {fileName}')
+                print(f'{lnCnt}')
             elif args.w:
                 wcCnt = getWords(fileName)
-                print(f'{wcCnt} {fileName}')
+                print(f'{wcCnt}')
             elif args.m:
                 bytCnt = getBytes(fileName)
-                print(f'{bytCnt} {fileName}')
+                print(f'{bytCnt}')
+            if os.path.exists("newFile.txt"):
+                os.remove("newFile.txt")
     elif args.file_name:
         fileName = args.file_name
         wcCnt,chCnt,lnCnt = getWords(fileName),getChars(fileName),getLines(fileName)
