@@ -75,6 +75,7 @@ def main():
                 print(f'{bytCnt}')
             if os.path.exists("newFile.txt"):
                 os.remove("newFile.txt")
+            file.close()
     elif args.file_name:
         fileName = args.file_name
         wcCnt,chCnt,lnCnt = getWords(fileName),getChars(fileName),getLines(fileName)
