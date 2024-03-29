@@ -79,23 +79,30 @@ def main():
     elif args.file_name:
         fileName = args.file_name
         wcCnt,chCnt,lnCnt = getWords(fileName),getChars(fileName),getLines(fileName)
-        print(f'{lnCnt} {wcCnt} {chCnt} {fileName}')
-    elif c:
-        fileName = c
-        chCnt = getChars(fileName)
-        print(f'{chCnt} {fileName}')
-    elif l:
-        fileName = l
-        lnCnt = getLines(fileName)
-        print(f'{lnCnt} {fileName}')
-    elif w:
-        fileName = w
-        wcCnt = getWords(fileName)
-        print(f'{wcCnt} {fileName}')
-    elif m:
-        fileName = m
-        bytCnt = getBytes(fileName)
-        print(f'{bytCnt} {fileName}')
+        if c:
+            print(f'{chCnt} {fileName}')
+        elif l:
+            print(f'{lnCnt} {fileName}')
+        elif w:
+            print(f'{wcCnt} {fileName}')
+        elif m:
+            print(f'{bytCnt} {fileName}')
+    # elif c:
+    #     fileName = c
+    #     chCnt = getChars(fileName)
+    #     print(f'{chCnt} {fileName}')
+    # elif l:
+    #     fileName = l
+    #     lnCnt = getLines(fileName)
+    #     print(f'{lnCnt} {fileName}')
+    # elif w:
+    #     fileName = w
+    #     wcCnt = getWords(fileName)
+    #     print(f'{wcCnt} {fileName}')
+    # elif m:
+    #     fileName = m
+    #     bytCnt = getBytes(fileName)
+    #     print(f'{bytCnt} {fileName}')
 
 if __name__ == "__main__":
     main()
